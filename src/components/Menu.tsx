@@ -25,10 +25,12 @@ const Menu = () => {
               className={`menu-icon ${path === "/profile" && " active"}`}
             />
           </Link>
-          <Link to="/">
+          <Link to="/chats">
             <MdChatBubbleOutline
               size={25}
-              className={`menu-icon ${path === "/" && " active"}`}
+              className={`menu-icon ${
+                (path === "/" || path === "/chats") && " active"
+              }`}
             />
           </Link>
           <Link to="/groups">

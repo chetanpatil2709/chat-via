@@ -9,9 +9,9 @@ const Profile = () => {
   const handleEdit = () => setEdit(!edit);
   return (
     <>
-      <div className="px-4 space-y-4">
+      <div className="px-2 space-y-4">
         <Heading title="Profile" />
-        <div className="mt-8 flex flex-col items-center space-y-5 py-3 px-4">
+        <div className="mt-8 flex flex-col items-center space-y-5 py-3">
           <img
             src="/src/assets/Aina-Asif.webp"
             alt="profile image"
@@ -20,7 +20,7 @@ const Profile = () => {
           <p>Aina Asif</p>
           <hr className="w-full  border-top border-gray-200" />
           {!edit ? (
-            <div className="w-full relative bg-white py-4 px-2 space-y-4">
+            <div className="w-full relative bg-white py-4 px-4 space-y-4">
               <div className="absolute right-2 cursor-pointer">
                 <CiEdit
                   size={20}
@@ -49,6 +49,10 @@ const Profile = () => {
                 <p>Aina Asif</p>
               </div>
               <div>
+                <label className="opacity-55">Username</label>
+                <p>ainaasif</p>
+              </div>
+              <div>
                 <label className="opacity-55">Email</label>
                 <p>ainaasif@gmail.com</p>
               </div>
@@ -58,11 +62,12 @@ const Profile = () => {
               </div>
             </div>
           ) : (
-            <form className="w-full relative bg-white py-4 px-2 space-y-4">
+            <form className="w-full relative bg-white py-4 px-4 space-y-4">
               <div className="flex w-full">
                 <Textarea label="Bio" name="bio" />
               </div>
               <Input label="Name" name="name" type="text" />
+              <Input label="Username" name="username" type="text" />
               <Input label="Email" name="email" type="text" />
               <Input label="Location" name="location" type="text" />
               <div className="space-x-2 float-end">

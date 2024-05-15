@@ -17,3 +17,10 @@ export interface IMessage {
 export interface IMessageProps {
   data: IMessage;
 }
+
+export interface IGroupList {
+  name: string;
+}
+export interface IPropsGroupHeads {
+  data: IGroupList;
+}

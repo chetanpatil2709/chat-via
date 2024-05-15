@@ -1,9 +1,13 @@
 import Heading from "../../components/Heading";
 import SearchBar from "../../components/SearchBar";
 import ChatHeads from "./ChatHeads";
+import GroupHeads from "./GroupHeads";
 import { IList } from "./interface";
+import { useParams } from "react-router-dom";
 
 const Chat = () => {
+  const { type } = useParams();
+
   const list: IList[] = [
     {
       name: "Tony Stark",
@@ -63,17 +67,28 @@ const Chat = () => {
       lastMsgTime: "10.02 AM",
     },
   ];
+
   return (
     <>
-      <div className="px-4 space-y-4">
-        <Heading title="Chats" />
+      <div className="px-4">
+        <Heading title={type === "groups" ? "Groups" : "Chats"} />
         <SearchBar />
         <div className="mt-4">
           <h1>Recent</h1>
           <div className="mt-2">
-            {list.map((ele, index) => (
-              <ChatHeads key={index} data={ele} />
-            ))}
+            {type === "groups" ? (
+              <>
+                {list.map((ele, index) => (
+                  <GroupHeads key={index} data={ele} />
+                ))}
+              </>
+            ) : (
+              <>
+                {list.map((ele, index) => (
+                  <ChatHeads key={index} data={ele} />
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>

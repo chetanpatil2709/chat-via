@@ -1,0 +1,30 @@
+user {
+    id
+    name
+    email
+    username
+    location
+    Bio
+    profile image
+}
+
+chats {
+    id
+    participents = []
+    time
+}
+
+groups {
+    id
+    participents = []
+    time
+    Bio   
+}
+
+message {
+    id
+    group or chat id 
+    sender
+    time
+    seen
+}

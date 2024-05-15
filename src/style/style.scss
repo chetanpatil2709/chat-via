@@ -7,6 +7,7 @@ $--aside-bg-active: #e6ebf5;
 $--brand-color: #7c3aed;
 $--secondary-bg: #e6ebf5;
 $--sidebar-sub-bg: #f5f7fb;
+
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -33,7 +34,7 @@ $--sidebar-sub-bg: #f5f7fb;
     box-shadow: 1px 1px 6px #acacacab;
   }
   > :last-child {
-    box-shadow: 3px 6px 5px 7px #acacacab;
+    box-shadow: 8px 6px 5px 7px #acacacab;
   }
 }
 .chat-head {
@@ -51,7 +52,8 @@ $--sidebar-sub-bg: #f5f7fb;
   @apply border text-black;
 }
 .submit-btn {
-  @apply brand-color text-white;
+  @apply text-white;
+  background-color: $--brand-color;
 }
 
 ::-webkit-scrollbar {
@@ -65,7 +67,7 @@ $--sidebar-sub-bg: #f5f7fb;
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #88888871;
+  background: #88888826;
 }
 
 /* Handle on hover */

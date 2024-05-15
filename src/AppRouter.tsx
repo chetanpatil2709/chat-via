@@ -13,6 +13,10 @@ const AppRouter = createBrowserRouter([
         element: <Chat />,
       },
       {
+        path: "/:type",
+        element: <Chat />,
+      },
+      {
         path: "/profile",
         element: <Profile />,
       },

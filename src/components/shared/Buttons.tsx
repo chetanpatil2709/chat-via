@@ -7,13 +7,7 @@ export const Button = ({ type, title, onClick }: IButton) => {
   return (
     <button
       type={type}
-      className={`btn ${
-        type === "button"
-          ? "default-btn"
-          : type === "submit"
-          ? "submit-btn"
-          : "default-btn"
-      }`}
+      className={`btn ${type === "submit" ? "submit-btn" : "default-btn"}`}
       onClick={onClick}
     >
       {title}

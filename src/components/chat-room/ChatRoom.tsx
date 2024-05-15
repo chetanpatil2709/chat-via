@@ -45,7 +45,7 @@ const msgList = [
   },
 ];
 
-const ChatRoom = ({ height }: { height: number }) => {
+const ChatRoom = ({ height = 0 }: { height?: number }) => {
   const headerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
@@ -89,12 +89,12 @@ const ChatRoom = ({ height }: { height: number }) => {
       {chat ? (
         <div className="w-full md:col-span-2 bg-white">
           <div
-            className="chat-room bg-white"
+            className=" bg-white"
             style={{ height: window.innerHeight - height || 0 + "px" }}
           >
             <div
               ref={headerRef}
-              className="w-full flex justify-between p-5 bg-white z-50 sticky top-0"
+              className="w-full flex justify-between p-5 bg-white z-50 sticky top-0 border-b"
             >
               <div className="flex items-center space-x-4">
                 <IoMdArrowBack
@@ -148,7 +148,7 @@ const ChatRoom = ({ height }: { height: number }) => {
             )}
             <div
               ref={footerRef}
-              className="p-5 flex space-x-6 items-center bg-white z-50"
+              className="p-5 flex space-x-6 items-center bg-white z-50 border-t"
             >
               <input
                 type="text"
