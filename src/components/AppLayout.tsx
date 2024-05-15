@@ -21,22 +21,22 @@ const AppLayout = () => {
       <section className="w-full h-screen flex flex-col-reverse items-start overflow-hidden bg-white sm:flex-row">
         <aside
           ref={asideRef}
-          className="w-full sm:w-fit h-fit sm:h-screen border-t sm:border-t-0 bg-white"
+          className="aside w-full sm:w-fit h-fit sm:h-screen border-t sm:border-t-0 bg-white"
         >
           <Menu />
         </aside>
         <div
-          className="w-full md:w-2/5 lg:w-1/3 h-full overflow-y-auto overflow-x-hidden bg-slate-100 "
+          className="sidebar w-full lg:w-1/3 h-full overflow-y-auto overflow-x-hidden bg-slate-100 "
           style={{
-            display: window.innerWidth < 640 && chat ? "none" : "unset",
+            display: window.innerWidth < 1024 && chat ? "none" : "unset",
           }}
         >
           <Outlet />
         </div>
         <div
-          className="w-full md:w-3/5 lg:w-2/3 h-full"
+          className="w-full lg:w-2/3 h-full"
           style={
-            window.innerWidth < 640
+            window.innerWidth < 1024
               ? {
                   display: chat ? "unset" : "none",
                 }

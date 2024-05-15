@@ -99,7 +99,7 @@ const ChatRoom = ({ height = 0 }: { height?: number }) => {
               <div className="flex items-center space-x-4">
                 <IoMdArrowBack
                   size={22}
-                  className="cursor-pointer sm:hidden"
+                  className="cursor-pointer lg:hidden"
                   onClick={handleBack}
                 />
                 <img
