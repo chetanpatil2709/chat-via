@@ -1,11 +1,17 @@
 import { FaRegCircleDot } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
-
-const ProfileLayout = ({ handleDrawer }: { handleDrawer: () => void }) => {
+import { motion } from "framer-motion";
+const ProfileLayout = ({
+  height,
+  handleDrawer,
+}: {
+  height: number;
+  handleDrawer: () => void;
+}) => {
   const CloseBtn = () => {
     return (
       <div
-        className="w-fit h-fit mt-2 mr-2 p-2 border border-gray-400 rounded-full cursor-pointer hover:bg-gray-200"
+        className="w-fit mt-2 mr-2 p-2 border border-gray-400 rounded-full cursor-pointer hover:bg-gray-200"
         onClick={handleDrawer}
       >
         <IoClose size={25} />
@@ -13,8 +19,17 @@ const ProfileLayout = ({ handleDrawer }: { handleDrawer: () => void }) => {
     );
   };
   return (
-    <div className="transition-all w-full h-full flex absolute z-50 backdrop-blur-sm overflow-y-hidden">
-      <div className="w-full lg:w-3/5 h-full flex absolute z-50 right-0 ">
+    <div
+      className="transition-all w-full h-full flex absolute z-50 backdrop-blur-sm overflow-hidden"
+      style={{ height: height ? height + "px" : "100%" }}
+    >
+      <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        transition={{ duration: 0.5 }}
+        className="w-full lg:w-3/5 h-full flex absolute z-50 right-0 "
+      >
         <div className="hidden lg:block">
           <CloseBtn />
         </div>
@@ -53,7 +68,7 @@ const ProfileLayout = ({ handleDrawer }: { handleDrawer: () => void }) => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

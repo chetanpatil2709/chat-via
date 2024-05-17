@@ -3,19 +3,36 @@ import Menu from "./Menu";
 import { useEffect, useRef, useState } from "react";
 import ChatRoom from "./chat-room/ChatRoom";
 import EmptyChatRoom from "./chat-room/EmptyChatRoom";
-
+import { motion } from "framer-motion";
 const AppLayout = () => {
   const asideRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number>();
   const [chat, setChat] = useState(false);
   const [searchParams] = useSearchParams();
   useEffect(() => setChat(searchParams.has("with")), [searchParams]);
-  const handleResize = () => setHeight(asideRef.current?.clientHeight);
+  const [chatroomContainerStyles, setChatroomContainerStyles] = useState({});
+  const [sidebarStyles, setSidebarStyles] = useState({});
   useEffect(() => {
+    const handleResize = () => {
+      setHeight(asideRef.current?.clientHeight);
+      setChatroomContainerStyles({
+        width: "100%",
+        display: window.innerWidth < 1024 && !chat ? "none" : "unset",
+      });
+      setSidebarStyles({
+        minWidth: window.innerWidth < 1024 ? "100%" : "30%",
+        display: window.innerWidth < 1024 && chat ? "none" : "unset",
+      });
+    };
     setTimeout(() => handleResize(), 100);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [chat]);
+  const variants = {
+    initial: { x: "100%" },
+    animate: { x: 0 },
+    exit: { x: "100%" },
+  };
   return (
     <>
       <section className="w-full h-screen flex flex-col-reverse items-start overflow-hidden bg-white sm:flex-row">
@@ -26,31 +43,34 @@ const AppLayout = () => {
           <Menu />
         </aside>
         <div
-          className="sidebar w-full lg:w-1/3 h-full overflow-y-auto overflow-x-hidden bg-slate-100 "
-          style={{
-            display: window.innerWidth < 1024 && chat ? "none" : "unset",
-          }}
+          className="sidebar h-full overflow-y-auto overflow-x-hidden bg-slate-100 "
+          style={sidebarStyles}
         >
           <Outlet />
         </div>
-        <div
-          className="w-full lg:w-2/3 h-full"
-          style={
-            window.innerWidth < 1024
-              ? {
-                  display: chat ? "unset" : "none",
-                }
-              : {}
-          }
-        >
-          {chat ? (
+
+        {chat ? (
+          <motion.div
+            variants={variants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 1, direction: "right" }}
+            className="chat-room lg:w-2/3 h-full"
+            style={chatroomContainerStyles}
+          >
             <ChatRoom height={height || 0} />
-          ) : (
-            <>
+          </motion.div>
+        ) : (
+          <>
+            <div
+              className="chat-room lg:w-2/3 h-full"
+              style={chatroomContainerStyles}
+            >
               <EmptyChatRoom />
-            </>
-          )}
-        </div>
+            </div>
+          </>
+        )}
       </section>
       {/* <section className="w-full h-screen flex flex-col-reverse items-start justify-end sm:flex-row">
         <aside

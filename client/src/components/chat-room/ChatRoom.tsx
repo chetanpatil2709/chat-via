@@ -6,6 +6,7 @@ import { LuMessagesSquare } from "react-icons/lu";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import ProfileLayout from "./ProfileLayout";
 import Message from "./Message";
+// import { motion } from "framer-motion";
 
 const msgList = [
   { msg: "Hii", sender: true, time: "02.55 AM" },
@@ -83,7 +84,7 @@ const ChatRoom = ({ height = 0 }: { height?: number }) => {
     return () => window.removeEventListener("resize", handleResize);
   });
   // useEffect(() => handleResize());
-
+  console.log("height ", height);
   return (
     <>
       {chat ? (
@@ -130,7 +131,12 @@ const ChatRoom = ({ height = 0 }: { height?: number }) => {
                   height: `${contentHeight}px`,
                 }}
               >
-                {drawer && <ProfileLayout handleDrawer={handleDrawer} />}
+                {drawer && (
+                  <ProfileLayout
+                    height={contentHeight}
+                    handleDrawer={handleDrawer}
+                  />
+                )}
                 {msgList.map((ele, index) => (
                   <Message data={ele} key={index} />
                 ))}
