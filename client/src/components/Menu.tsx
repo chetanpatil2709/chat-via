@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaRegUser, FaRegUserCircle, FaUsers } from "react-icons/fa";
+import { FaRegUser, FaUsers } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
 import { LuMessagesSquare } from "react-icons/lu";
 import { MdChatBubbleOutline } from "react-icons/md";
