@@ -5,7 +5,7 @@ import Profile from "./pages/profile";
 import React from "react";
 import Auth from "./pages/auth";
 // import NotFound from "./pages/not-found";
-const isAuthenticated = true;
+const isAuthenticated = false;
 
 const ProtectedRoute = ({ element }: { element: JSX.Element }) => {
   return isAuthenticated ? (
