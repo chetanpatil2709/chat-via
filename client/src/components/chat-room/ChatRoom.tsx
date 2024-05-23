@@ -6,7 +6,6 @@ import { LuMessagesSquare } from "react-icons/lu";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import ProfileLayout from "./ProfileLayout";
 import Message from "./Message";
-// import { motion } from "framer-motion";
 
 const msgList = [
   { msg: "Hii", sender: true, time: "02.55 AM" },
@@ -76,7 +75,7 @@ const ChatRoom = ({ height = 0 }: { height?: number }) => {
           window.innerHeight -
             headerHeight -
             footerHeight -
-            (window.innerWidth < 640 ? height : 0)
+            (window.innerWidth < 1024 ? height : 0)
       );
     };
     handleResize();
@@ -85,12 +84,24 @@ const ChatRoom = ({ height = 0 }: { height?: number }) => {
   });
   // useEffect(() => handleResize());
   console.log("height ", height);
+  // const variants = {
+  //   initial: { x: "100%" },
+  //   animate: { x: 0 },
+  //   exit: { x: "100%" },
+  // };
   return (
     <>
       {chat ? (
-        <div className="w-full md:col-span-2 bg-white">
+        <div
+          // variants={variants}
+          // initial="initial"
+          // animate="animate"
+          // exit="exit"
+          // transition={{ duration: 1, direction: "left" }}
+          className="w-full md:col-span-2 bg-white"
+        >
           <div
-            className=" bg-white"
+            className="relative bg-white"
             style={{ height: window.innerHeight - height || 0 + "px" }}
           >
             <div
@@ -123,25 +134,28 @@ const ChatRoom = ({ height = 0 }: { height?: number }) => {
               </ul>
             </div>
             {contentHeight ? (
-              <div
-                ref={contentRef}
-                className="overflow-x-hidden px-2 sm:px-3 md:px-4"
-                data-height={contentHeight}
-                style={{
-                  height: `${contentHeight}px`,
-                }}
-              >
+              <>
                 {drawer && (
                   <ProfileLayout
                     height={contentHeight}
                     handleDrawer={handleDrawer}
                   />
                 )}
-                {msgList.map((ele, index) => (
-                  <Message data={ele} key={index} />
-                ))}
-                <div ref={messagesEndRef} />
-              </div>
+                <div
+                  ref={contentRef}
+                  className="overflow-x-hidden px-2 sm:px-3 md:px-4"
+                  data-height={contentHeight}
+                  style={{
+                    height: `${contentHeight}px`,
+                    // overflowY: drawer ? "hidden" : "auto",
+                  }}
+                >
+                  {msgList.map((ele, index) => (
+                    <Message data={ele} key={index} />
+                  ))}
+                  <div ref={messagesEndRef} />
+                </div>
+              </>
             ) : (
               <>
                 <div

@@ -9,7 +9,7 @@ const Profile = () => {
   const handleEdit = () => setEdit(!edit);
   return (
     <>
-      <div className="px-2 space-y-4">
+      <div className="h-full px-2 space-y-4 overflow-y-auto overflow-x-hidden">
         <Heading title="Profile" />
         <div className="mt-8 flex flex-col items-center space-y-5 py-3">
           <img

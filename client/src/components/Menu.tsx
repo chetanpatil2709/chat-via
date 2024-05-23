@@ -10,15 +10,15 @@ const Menu = () => {
   const p = useLocation();
   useEffect(() => setPath(p.pathname), [p]);
   return (
-    <div className="w-full px-5 py-3 sm:mt-2">
+    <div className="w-full px-5 py-3 lg:mt-2">
       <div className="w-full">
         <Link to="/">
           <LuMessagesSquare
             size={35}
-            className="cursor-pointer hidden sm:block active"
+            className="cursor-pointer hidden lg:block active"
           />
         </Link>
-        <div className="w-full flex justify-between items-center cursor-pointer sm:flex-col sm:mt-16 sm:space-y-10">
+        <div className="w-full flex justify-between items-center cursor-pointer lg:flex-col lg:mt-16 lg:space-y-10">
           <Link to="/profile">
             <FaRegUser
               size={25}
@@ -45,10 +45,7 @@ const Menu = () => {
               className={`menu-icon ${path === "/setting" && " active"}`}
             />
           </Link>
-          <FaRegUserCircle
-            size={29}
-            className="block sm:hidden cursor-pointer"
-          />
+          {/* <FaRegUserCircle size={29} className="block :hidden cursor-pointer" /> */}
         </div>
       </div>
     </div>
