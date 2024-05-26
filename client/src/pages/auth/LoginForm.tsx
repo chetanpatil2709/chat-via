@@ -13,7 +13,7 @@ import { useAuth } from "../../hooks/useAuth";
 const LoginForm = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const auth = useAuth();
+  const user = useAuth();
   const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
   const authResult = useTypedSelector((state) => state.auth) as IAuthResult;
   const credentialSchema: ICredentials = { email: "", password: "" };
@@ -72,17 +72,17 @@ const LoginForm = () => {
         }, 2000);
       }
       if (res.payload.status === 200) {
-        setTimeout(
-          () =>
-            auth.login({
+        setTimeout(() => {
+          if (user.login) {
+            user.login({
               token: res?.payload?.token,
               username: res?.payload.username,
-            }),
-          2000
-        );
+            });
+          }
+        }, 2000);
       }
       console.log("res  ", res);
-      console.log("auth  ", auth);
+      console.log("user  ", user);
     }
   };
   return (

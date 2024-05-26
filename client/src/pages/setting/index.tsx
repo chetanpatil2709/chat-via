@@ -7,8 +7,10 @@ const Setting = () => {
   const navigate = useNavigate();
   const user = useAuth();
   const handleLogOut = () => {
-    user.logout();
-    navigate("/");
+    if (user.state.isAuthenticated && user.logout) {
+      user.logout();
+      navigate("/");
+    }
   };
   return (
     <div className="h-full px-2 space-y-4 overflow-y-auto overflow-x-hidden">

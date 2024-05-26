@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useReducer } from "react";
 
 interface IAuthState {
   isAuthenticated: boolean;
-  username: string;
+  username: string | null;
 }
 const initialState: IAuthState = {
   isAuthenticated: false,
@@ -16,8 +16,7 @@ interface IAuthAction {
   type?: "LOGIN" | "LOGOUT" | "CHECK";
   payload?: IActionPayload;
 }
-
-const authReducer = (state: IAuthState, action: IAuthAction) => {
+const authReducer = (state: IAuthState, action: IAuthAction): IAuthState => {
   switch (action.type) {
     case "LOGIN": {
       action?.payload?.token &&
@@ -60,20 +59,23 @@ const authReducer = (state: IAuthState, action: IAuthAction) => {
 };
 interface IAuthContext {
   state: IAuthState;
-  login?: (user: { token: string }) => void | undefined;
-  logout?: () => void;
+  login?: (user: { token: string; username: string }) => void | undefined;
+  logout?: (() => void) | undefined;
 }
-
 export const AuthContext = createContext<IAuthContext>({
   state: initialState,
 });
-
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
-  const login = (user: { token: string }) =>
+  const login = (user: { token: string }) => {
     dispatch({ type: "LOGIN", payload: user });
-  const logout = () => dispatch({ type: "LOGOUT" });
-  useEffect(() => dispatch({ type: "CHECK" }), []);
+  };
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
+  useEffect(() => {
+    dispatch({ type: "CHECK" });
+  }, []);
   return (
     <AuthContext.Provider value={{ state, login, logout }}>
       {children}
