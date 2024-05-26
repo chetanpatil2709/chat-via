@@ -26,13 +26,6 @@ body {
   color: #7c3aed;
 }
 
-.chat-room > :first-child {
-  box-shadow: 1px 1px 6px rgba(172, 172, 172, 0.6705882353);
-}
-.chat-room > :last-child {
-  box-shadow: 8px 6px 5px 7px rgba(172, 172, 172, 0.6705882353);
-}
-
 .chat-head {
   @apply flex cursor-pointer bg-inherit hover:secondary-bg rounded-md;
 }
@@ -46,9 +39,9 @@ body {
   box-shadow: 0px -1px 3px -1px rgba(128, 128, 128, 0.4);
   z-index: 100;
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 640px) {
   .aside {
-    box-shadow: 0px -5px 8px -1px rgba(128, 128, 128, 0.4);
+    box-shadow: 1px 0px 4px -1px rgba(128, 128, 128, 0.4);
   }
 }
 
@@ -60,9 +53,13 @@ body {
   @apply border text-black;
 }
 
-.submit-btn {
+.primary-btn {
   @apply text-white;
   background-color: #7c3aed;
+}
+
+.loading-btn {
+  @apply text-white bg-yellow-400;
 }
 
 ::-webkit-scrollbar {
@@ -82,4 +79,4 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #888;
-} /*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

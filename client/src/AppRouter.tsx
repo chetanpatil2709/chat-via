@@ -4,11 +4,13 @@ import Chat from "./pages/chats";
 import Profile from "./pages/profile";
 import React from "react";
 import Auth from "./pages/auth";
+import Setting from "./pages/setting";
+import { useAuth } from "./hooks/useAuth";
 // import NotFound from "./pages/not-found";
-const isAuthenticated = false;
-
 const ProtectedRoute = ({ element }: { element: JSX.Element }) => {
-  return isAuthenticated ? (
+  const user = useAuth();
+  console.log("username -", user.state.username || null);
+  return user.state.isAuthenticated ? (
     <React.Fragment>{element}</React.Fragment>
   ) : (
     <React.Fragment>
@@ -34,6 +36,10 @@ const AppRouter = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/setting",
+        element: <Setting />,
       },
     ],
   },

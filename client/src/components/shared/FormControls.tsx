@@ -5,8 +5,10 @@ interface IInputProps {
   name?: string;
   type?: string;
   label?: string;
+  error?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-export const Input = ({ name, label, type }: IInputProps) => {
+export const Input = ({ name, label, type, error, onChange }: IInputProps) => {
   const [passType, setPassType] = useState("password");
   const handlePassType = () =>
     setPassType(passType === "password" ? "text" : "password");
@@ -19,7 +21,10 @@ export const Input = ({ name, label, type }: IInputProps) => {
           name={name}
           id={name}
           className="w-full border py-2 px-3 outline-none rounded-sm"
+          onChange={onChange}
         />
+        {error && <span className="text-sm text-red-700">{error}</span>}
+        {/* switch password type */}
         {type === "password" && (
           <span
             className="absolute top-2 right-2 cursor-pointer"
@@ -36,9 +41,7 @@ export const Input = ({ name, label, type }: IInputProps) => {
     </div>
   );
 };
-Input.defaultProps = {
-  type: "text",
-};
+
 export const Textarea = ({ name, label }: IInputProps) => {
   return (
     <div className="w-full flex flex-col">

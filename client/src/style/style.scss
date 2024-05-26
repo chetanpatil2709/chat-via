@@ -31,12 +31,12 @@ body {
   }
 }
 .chat-room {
-  > :first-child {
-    box-shadow: 1px 1px 6px #acacacab;
-  }
-  > :last-child {
-    box-shadow: 8px 6px 5px 7px #acacacab;
-  }
+  // > :first-child {
+  //   box-shadow: 1px 1px 6px #acacacab;
+  // }
+  // > :last-child {
+  //   box-shadow: 8px 6px 5px 7px #acacacab;
+  // }
 }
 .chat-head {
   @apply flex cursor-pointer bg-inherit hover:secondary-bg rounded-md;
@@ -52,7 +52,7 @@ body {
   box-shadow: 0px -1px 3px -1px #80808066;
   z-index: 100;
   @media screen and (min-width: 640px) {
-    box-shadow: 0px -5px 8px -1px #80808066;
+    box-shadow: 1px 0px 4px -1px #80808066;
   }
 }
 .chat-room {
@@ -65,9 +65,12 @@ body {
 .default-btn {
   @apply border text-black;
 }
-.submit-btn {
+.primary-btn {
   @apply text-white;
   background-color: $--brand-color;
+}
+.loading-btn {
+  @apply text-white bg-yellow-400;
 }
 
 ::-webkit-scrollbar {

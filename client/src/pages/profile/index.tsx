@@ -3,8 +3,10 @@ import { Input, Textarea } from "../../components/shared/FormControls";
 import { useState } from "react";
 import { Button } from "../../components/shared/Buttons";
 import Heading from "../../components/Heading";
+import { useAuth } from "../../hooks/useAuth";
 
 const Profile = () => {
+  const auth = useAuth();
   const [edit, setEdit] = useState<boolean>(false);
   const handleEdit = () => setEdit(!edit);
   return (
@@ -17,7 +19,7 @@ const Profile = () => {
             alt="profile image"
             className="min-w-[80px] min-h-[80px] max-w-[80px] max-h-[80px] rounded-full"
           />
-          <p>Aina Asif</p>
+          <p>{auth.state.username || ""}</p>
           <hr className="w-full  border-top border-gray-200" />
           {!edit ? (
             <div className="w-full relative bg-white py-4 px-4 space-y-4">
