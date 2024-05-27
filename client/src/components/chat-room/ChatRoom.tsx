@@ -65,7 +65,6 @@ const ChatRoom = ({ height = 0 }: { height?: number }) => {
   }, [contentHeight, contentRef]);
 
   useEffect(() => {
-    console.log("useeffect");
     const headerHeight: number | undefined = headerRef.current?.clientHeight;
     const footerHeight: number | undefined = footerRef.current?.clientHeight;
     const handleResize = () => {
@@ -82,24 +81,10 @@ const ChatRoom = ({ height = 0 }: { height?: number }) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   });
-  // useEffect(() => handleResize());
-  console.log("height ", height);
-  // const variants = {
-  //   initial: { x: "100%" },
-  //   animate: { x: 0 },
-  //   exit: { x: "100%" },
-  // };
   return (
     <>
       {chat ? (
-        <div
-          // variants={variants}
-          // initial="initial"
-          // animate="animate"
-          // exit="exit"
-          // transition={{ duration: 1, direction: "left" }}
-          className="w-full md:col-span-2 bg-white"
-        >
+        <div className="w-full md:col-span-2 bg-white">
           <div
             className="relative bg-white"
             style={{ height: window.innerHeight - height || 0 + "px" }}

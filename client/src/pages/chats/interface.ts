@@ -1,14 +1,14 @@
-export interface IList {
-  name: string;
-  image: string;
-  lastMsg: string;
-  lastMsgTime: string;
+export interface IUserDetails {
+  _id?: unknown;
+  username?: string;
+  profilePic?: string;
+  lastMsg?: string;
+  lastMsgTime?: string;
 }
-
-export interface IPropsChatHeads {
-  data: IList;
+export interface IAllChats {
+  status: number;
+  users?: IUserDetails[] | [] | undefined;
 }
-
 export interface IMessage {
   msg?: string;
   sender?: boolean;

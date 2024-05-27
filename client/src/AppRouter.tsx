@@ -9,7 +9,6 @@ import { useAuth } from "./hooks/useAuth";
 // import NotFound from "./pages/not-found";
 const ProtectedRoute = ({ element }: { element: JSX.Element }) => {
   const user = useAuth();
-  console.log("username -", user.state.username || null);
   return user.state.isAuthenticated ? (
     <React.Fragment>{element}</React.Fragment>
   ) : (

@@ -6,11 +6,10 @@ export const signIn = createAsyncThunk(
   "signin",
   async (credentials: ICredentials) => {
     try {
-      const response = await axiosInstance.post("auth/signin", {
+      const response = await axiosInstance.post("auth/signin", credentials, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: credentials,
       });
       return response.data;
     } catch (error) {
@@ -23,11 +22,10 @@ export const signUp = createAsyncThunk(
   "registerUser",
   async (data: IRegisterSchema) => {
     try {
-      const response = await axiosInstance.post("auth/signup", {
+      const response = await axiosInstance.post("auth/signup", data, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: data,
       });
       return response.data;
     } catch (error) {

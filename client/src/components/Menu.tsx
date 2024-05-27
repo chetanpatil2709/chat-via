@@ -18,7 +18,7 @@ const Menu = () => {
             className="cursor-pointer hidden lg:block active"
           />
         </Link>
-        <div className="w-full flex justify-between items-center cursor-pointer lg:flex-col lg:mt-16 lg:space-y-10">
+        <div className="w-full flex justify-between sm:justify-around items-center cursor-pointer lg:flex-col lg:mt-16 lg:space-y-10">
           <Link to="/profile">
             <FaRegUser
               size={25}

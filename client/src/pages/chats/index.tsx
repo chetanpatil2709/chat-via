@@ -1,14 +1,28 @@
+import { useDispatch } from "react-redux";
 import Heading from "../../components/Heading";
 import SearchBar from "../../components/SearchBar";
+import { getAll } from "../../services/user/user.action";
 import ChatHeads from "./ChatHeads";
 import GroupHeads from "./GroupHeads";
-import { IList } from "./interface";
+import { IAllChats, IUserDetails } from "./interface";
 import { useParams } from "react-router-dom";
+import { AppDispatch } from "../../services/store";
+import { Key, useEffect, useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 const Chat = () => {
   const { type } = useParams();
-
-  const list: IList[] = [
+  const dispatch = useDispatch<AppDispatch>();
+  const auth = useAuth();
+  const [allChats, setAllChats] = useState<IAllChats | undefined>(undefined);
+  const loadAllChats = async () => {
+    const res = await dispatch(getAll());
+    setAllChats(res.payload);
+  };
+  useEffect(() => {
+    loadAllChats();
+  }, []);
+  const list: IUserDetails[] = [
     {
       name: "Tony Stark",
       image: "/src/assets/tony.jpg",
@@ -84,9 +98,15 @@ const Chat = () => {
               </>
             ) : (
               <>
-                {list.map((ele, index) => (
-                  <ChatHeads key={index} data={ele} />
-                ))}
+                {allChats &&
+                  allChats &&
+                  allChats.users
+                    ?.filter((ele) => {
+                      return ele.username !== auth.state.username;
+                    })
+                    .map((ele: IUserDetails, index: Key | null | undefined) => (
+                      <ChatHeads key={index} data={ele} />
+                    ))}
               </>
             )}
           </div>

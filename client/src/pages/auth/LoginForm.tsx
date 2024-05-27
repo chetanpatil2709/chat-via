@@ -7,12 +7,10 @@ import { AppDispatch } from "../../services/store";
 import { signIn } from "../../services/auth/auth.actions";
 import Alert from "../../components/Alert";
 import { validateEmail, validatePassword } from "../../utils/validate";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
 const LoginForm = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
   const user = useAuth();
   const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
   const authResult = useTypedSelector((state) => state.auth) as IAuthResult;
@@ -64,7 +62,7 @@ const LoginForm = () => {
           message: res.payload.message,
         });
         setTimeout(() => {
-          navigate("/chat");
+          // navigate("/");
           setAlert({
             status: 0,
             message: "",
